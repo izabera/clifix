@@ -14,11 +14,11 @@ command_not_found_handle() {
   fi
   [[ -r ~/.config/clifix/corrections ]] && source ~/.config/clifix/corrections
   declare -A {always,maybe}_correct
-  if [[ -v 'always_correct[$1]' ]]; then
+  if [[ ${always_correct[$1]+x} ]]; then
     "${always_correct[$1]}" "${@:2}"
     return
   fi
-  if [[ -v 'maybe_correct[$1]' ]]; then
+  if [[ ${maybe_correct[$1]+x} ]]; then
     ask_correction "$1" "${maybe_correct[$1]}" "${@:2}"
     return
   fi

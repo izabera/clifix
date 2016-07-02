@@ -6,7 +6,7 @@ That nifty autocorrection feature in zsh is now available for bash!
 
 
 ## Requirements
-- bash 4.2 or above  *(but it could be ported to (at least) 4.0 with minimal changes)*
+- bash 4.0 or above
 - nothing else!
 
 ## How to install
