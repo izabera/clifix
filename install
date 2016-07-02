@@ -1,0 +1,27 @@
+#!/bin/bash
+
+mkdir -p ~/.config/clifix
+# for a faster look up
+[[ -r ~/.config/clifix/corrections ]] && source ~/.config/clifix/corrections
+declare -A maybe_correct
+# random list of commands
+for cmd in bash sh git sudo python iptables uname node perl wget curl tmux screen \
+  tar grep find ssh sed awk vim emacs diff sort pwd gzip free {h,}top kill cp cat \
+  mv ls du dd df rm rmdir mount ch{mod,own} passwd mkdir locate man tail head less \
+  ping date file apt{,-get,itude} pacman yum rpm which ifconfig scp nano vi svn hg; do
+  type -- "$cmd" &>/dev/null || continue
+  len=${#cmd}
+  # swap two characters
+  for (( i = 1; i < len; i++ )); do
+    tmp=${cmd:0:i-1}${cmd:i:1}${cmd:i-1:1}${cmd:i+1}
+    maybe_correct[$tmp]=$cmd
+  done
+  # remove characters
+  for (( i = 0; i < len; i++ )); do
+    tmp=${cmd:0:i}${cmd:i+1}
+    maybe_correct[$tmp]=$cmd
+  done
+done
+declare -p {always,maybe}_correct > ~/.config/clifix/corrections
+
+echo "Add this to your .bashrc: source /path/to/clifix"
