@@ -3,7 +3,7 @@
 mkdir -p ~/.config/clifix
 # for a faster look up
 [[ -r ~/.config/clifix/corrections ]] && source ~/.config/clifix/corrections
-declare -A {always,maybe}_correct
+declare -A always_correct=() maybe_correct=()
 # random list of commands
 for cmd in bash sh git sudo python iptables uname node perl wget curl tmux screen \
   tar grep find ssh sed awk vim emacs diff sort pwd gzip free {h,}top kill cp cat \
