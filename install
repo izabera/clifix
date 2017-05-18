@@ -8,7 +8,8 @@ declare -A always_correct=() maybe_correct=()
 for cmd in bash sh git sudo python iptables uname node perl wget curl tmux screen \
   tar grep find ssh sed awk vim emacs diff sort pwd gzip free {h,}top kill cp cat \
   mv ls du dd df rm rmdir mount ch{mod,own} passwd mkdir locate man tail head less \
-  ping date file apt{,-get,itude} pacman yum rpm which ifconfig scp nano vi svn hg; do
+  ping date file apt{,-get,itude} pacman yum rpm which ifconfig scp nano vi svn hg \
+  uniq {,re}nice basename xargs gunzip {md5,sha1}sum shutdown reboot {s,}tty; do
   type -- "$cmd" &>/dev/null || continue
   len=${#cmd}
   # swap two characters
